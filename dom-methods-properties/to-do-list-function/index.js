@@ -1,0 +1,33 @@
+// function adding elements into to-do list
+
+'use strict';
+
+const tasks = [
+  { text: 'Buy milk', done: false },
+  { text: 'Pick up Tom from airport', done: false },
+  { text: 'Visit party', done: false },
+  { text: 'Visit doctor', done: true },
+  { text: 'Buy meat', done: true },
+];
+
+const renderTasks = tasksList => {
+  
+  tasks.sort( (a, b) => a.done - b.done).forEach(( { text, done } ) => {
+
+    const listElement = document.querySelector('.list');
+
+    const listItem = document.createElement('li');
+    listItem.textContent = text;
+    listItem.classList.add('list__item');
+    if (done) listItem.classList.add('list__item_done');
+
+    const listCheckBox = document.createElement('input');
+    listCheckBox.setAttribute('type', 'checkbox');
+    listCheckBox.classList.add('list__item-checkbox');
+    listCheckBox.checked = done;
+
+    listElement.append(listItem);
+    listItem.prepend(listCheckBox);
+
+  });
+};
