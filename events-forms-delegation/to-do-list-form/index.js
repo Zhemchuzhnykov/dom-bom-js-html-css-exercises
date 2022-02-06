@@ -53,17 +53,14 @@ const taskStatusChange = (event) => {
 const addNewTask = () => {
   const newTask = newTaskField.value;
 
-  tasks.push( {text: newTask, id: tasks.length + 1, done: false} );
+  if(newTask.length > 0) tasks.push( {text: newTask, id: tasks.length + 1, done: false} );
 
   listElem.innerHTML = '';
 
   renderTasks(tasks);
+  newTaskField.value = '';
 };
 
 toDoList.addEventListener('click', taskStatusChange);
 createButton.addEventListener('click', addNewTask);
-
-/* button Create adds a new task with the text from the field before Create and clears the field after adding.
-event listener for the button Create => function to the event listener => get a value of the input
-change the initial array */
 
