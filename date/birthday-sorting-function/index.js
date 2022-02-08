@@ -21,6 +21,3 @@ const studentsBirthDays = (students) => {
 };
 
 console.log(studentsBirthDays(students));
-
-/* sort array => generate an array with the months => formatter to add months strings => assign to new object array
- names from the months array by index => getMonth => assign key => assign value in the right format => return it */
