@@ -1,8 +1,8 @@
 const tasks = [
-  { text: 'Buy milk', id: 1, creationTime: new Date().getTime(), doneTime: new Date().getTime(), done: false },
-  { text: 'Pick up Tom from airport', id: 2, creationTime: new Date().getTime(), doneTime: new Date().getTime(),  done: false },
+  { text: 'Buy milk', id: 1, creationTime: new Date().getTime(), doneTime: null, done: false },
+  { text: 'Pick up Tom from airport', id: 2, creationTime: new Date().getTime(), doneTime: null,  done: false },
   { text: 'Visit party', id: 3, creationTime: new Date().getTime(), doneTime: new Date().getTime(),  done: true },
-  { text: 'Visit doctor', id: 4, creationTime: new Date().getTime(), doneTime: new Date().getTime(),  done: false },
+  { text: 'Visit doctor', id: 4, creationTime: new Date().getTime(), doneTime: null,  done: false },
   { text: 'Buy meat', id: 5, creationTime: new Date().getTime(), doneTime: new Date().getTime(),  done: true },
 ];
 
@@ -11,15 +11,24 @@ const createButton = document.querySelector('.create-task-btn');
 const newTaskField = document.querySelector('.task-input');
 
 const compareTasks = (a, b) => {
-  if (a.done) return new Date(b.finishDate) - new Date(a.finishDate);
 
-  return new Date(b.creationTime) - new Date(a.creationTime);
-};
+  // sorting by completion
+    if (a.done < b.done) return -1;
+    if (a.done > b.done) return 1;
+
+    // sorting by time of completion
+    if (a.doneTime < b.doneTime) return 1;
+    if (a.doneTime > b.doneTime) return -1;
+
+    // sorting by time of addition
+    if (a.creationTime < b.creationTime) return 1;
+    if (a.creationTime > b.creationTime) return -1;
+
+  };
 
 const renderTasks = tasksList => {
-  const orderedByTimeTasks = tasksList.sort(compareTasks);
-  const tasksElems = orderedByTimeTasks
-    .sort((a, b) => a.done - b.done)
+  const tasksElems = tasksList
+    .sort(compareTasks)
     .map(task => {
       const { text, done } = task;
       const listItemElem = document.createElement('li');
@@ -72,10 +81,3 @@ const addNewTask = () => {
 
 listElem.addEventListener('click', taskStatusChange);
 createButton.addEventListener('click', addNewTask);
-
-
-
-
-
-
-
