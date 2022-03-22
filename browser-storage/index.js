@@ -18,3 +18,25 @@ const getLocalStorageData = () =>  Object.entries(localStorage).reduce( (acca, [
       [key]: valueToAssign,
     };
   }, {});
+
+  // counter that saves its values when a web document is refreshed, reloaded, opened in another tab
+  const counter = document.querySelector('.counter__container');
+  const counterValue = counter.querySelector('.counter__value');
+
+  const onCounterClick = (event) => {
+
+    const operandOfChange = event.target.dataset.operation === 'decrease' ? -1: 1;
+
+    counterValue.textContent = +counterValue.textContent + operandOfChange;
+
+    localStorage.setItem('newValue', JSON.stringify(counterValue.textContent));
+
+  };
+
+  const localStorageValueLoad = () => {
+    counterValue.textContent = JSON.parse(localStorage.getItem('newValue'));
+  };
+
+  counter.addEventListener('click', onCounterClick);
+  window.addEventListener('storage', localStorageValueLoad);
+  window.addEventListener('DOMContentLoaded', localStorageValueLoad);

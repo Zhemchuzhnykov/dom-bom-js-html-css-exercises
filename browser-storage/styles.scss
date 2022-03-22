@@ -1,0 +1,20 @@
+body {
+  display: flex;
+  height: 100vh;
+}
+
+.counter__container {
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 100px;
+  width: 300px;
+
+  & .counter__control {
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 20px;
+    background-color: lightblue;
+  }
+}
