@@ -1,5 +1,4 @@
 // data structure of a catalogue in which some nodes should be marked as favorites
-
 const tree = {
   id: 'id-1',
   name: 'Products',
@@ -24,4 +23,12 @@ const markFavorites = (tree, favorites) => {
     isFavorite,
     nodes: tree.nodes.map(childNode => markFavorites(childNode, favorites))
   };
+};
+
+// function returning sum of all the numbers that are not more than the number passed to the function as an argument
+const sum = number => {
+
+    if (number <= 1) return number;
+
+    return number + sum(number - 1);
 };
