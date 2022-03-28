@@ -20,7 +20,8 @@ const setMethodsNames = {
   milliseconds: 'setMilliseconds',
 };
 
-// the time-machine function: sends to the future with the method add() or to the past with the method subtract()
+/* The time-machine function: the function generates a new date in the future with the method add() 
+  or new date in the past with the method subtract(). */
 const shmoment = (date) => {
 
   return {
