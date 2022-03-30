@@ -6,10 +6,6 @@ const addImage = (imgSrc, callback) => {
   imageElement.setAttribute('alt', 'A drone photo of forests and lakes');
   imageElement.src = imgSrc;
   webPage.append(imageElement);
-
-  // const onImageLoaded = (error) => {
-  //   callback(error, imageElement);
-  // };
   
   imageElement.addEventListener('load', () => callback(null, imageElement));
   imageElement.addEventListener('error', () => callback('Image load is failed', imageElement));
