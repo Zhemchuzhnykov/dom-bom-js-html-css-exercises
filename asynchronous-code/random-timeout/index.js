@@ -1,6 +1,6 @@
 'use strict';
 
-// the function imitating loading user's data to another function
+// the function imitating loading user's data before executing another function with the user's data
 const requestUserData = (userId, callback) => {
 
   const delayTime = ((Math.random() * (3 - 1) + 1) * 1000).toFixed(0);
@@ -10,12 +10,7 @@ const requestUserData = (userId, callback) => {
     return;
   };
 
-  const userData = {
-    userId,
-    email: `${userId}@example.com`
-  };
-
-  setTimeout(() => callback.apply(userData, [userData, null]), delayTime);
+  setTimeout(() => callback( { userId, email: `${userId}@example.com` } ), delayTime);
 };
 
 // test callback
