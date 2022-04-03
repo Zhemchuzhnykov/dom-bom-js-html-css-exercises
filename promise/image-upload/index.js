@@ -33,4 +33,4 @@ const imageLink =
 const onImageLoad = addImage(imageLink);
 
 onImageLoad.then(imageSizeDisplay);
-onImageLoad.catch((error) => console.log(error));
+// onImageLoad.catch((error) => console.log(error));
