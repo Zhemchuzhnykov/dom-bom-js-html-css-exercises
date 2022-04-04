@@ -14,7 +14,9 @@ const addImage = imgSrc => {
       const { width, height } = imageElement;
       resolve( { width, height } );
     });
-    imageElement.addEventListener('error', () => reject(new Error('Image load is failed')));
+    imageElement.addEventListener('error', () => {
+      reject(new Error('Image load is failed...'));
+    });
   });
 
   return pageUploadData;
@@ -33,4 +35,6 @@ const imageLink =
 const onImageLoad = addImage(imageLink);
 
 onImageLoad.then(imageSizeDisplay);
-// onImageLoad.catch((error) => console.log(error));
+onImageLoad.catch(function (error) {
+  alert(error);
+});
