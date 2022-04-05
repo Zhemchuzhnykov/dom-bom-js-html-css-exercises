@@ -2,26 +2,22 @@ import { addImage } from "./addImage.js";
 
 // function returning the promise with an uploaded picture information or data of an error
 const addImageV2 = url => {
-  const imageData = new Promise((resolve, reject) => {
 
-    // adding an image
-    const img = document.createElement('img');
-    img.setAttribute('alt', 'User avatar');
-    img.src = url;
-    const pageElem = document.querySelector('.page');
-    pageElem.append(img);
+  const pageUploadData = new Promise((resolve, reject) => {
 
-    // returning promises
-    img.addEventListener('load', () => {
-      const { width, height } = img;
-      resolve( { width, height } );
-    });
-    img.addEventListener('error', () => {
-      reject('Image load failed');
-    });
+    const imageLoadOutcome = (text, size) => {
+      if (text === null) {
+        resolve(size);
+        return;
+      };
+      reject(text);
+    };
+
+    addImage(url, imageLoadOutcome)
+
   });
 
-  return imageData;
+  return pageUploadData;
 };
 
 const imageLink = 
